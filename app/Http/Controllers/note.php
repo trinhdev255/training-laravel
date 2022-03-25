@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use SebastianBergmann\Environment\Console;
 
@@ -15,6 +16,8 @@ class note extends Controller
     public function index()
     {
         //
+        $car = User::find(1)->cars;
+        dd($car);
         return view("noteview");
     }
 

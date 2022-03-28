@@ -36,12 +36,16 @@ return [
     'mailers' => [
         'smtp' => [
             'transport' => 'smtp',
-            'host' => env('MAIL_HOST', 'smtp.mailgun.org'),
+            'host' => env('MAIL_HOST', 'smtp.gmail.com'),
             'port' => env('MAIL_PORT', 587),
             'encryption' => env('MAIL_ENCRYPTION', 'tls'),
-            'username' => env('MAIL_USERNAME'),
-            'password' => env('MAIL_PASSWORD'),
+            'username' => env('abchtertr@gmail.com'),
+            'password' => env('zydcmaboxejfsgea'),
             'timeout' => null,
+            'from' => [
+                'address' => env('MAIL_FROM_ADDRESS', 'abchtertr@gmail.com'),
+                'name' => env('MAIL_FROM_NAME', 'Mas Thomas'),
+            ],
         ],
 
         'ses' => [
@@ -50,6 +54,8 @@ return [
 
         'mailgun' => [
             'transport' => 'mailgun',
+            'domain' => env('sandboxc70b38c096934a3e84c6a183426415b5.mailgun.org'),
+            'secret' => env('87c9cf7ec6db617179545443756062e6-62916a6c-ff21a5f6'),
         ],
 
         'postmark' => [

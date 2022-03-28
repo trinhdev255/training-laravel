@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\OrderShipped;
 use App\Models\User;
 use Illuminate\Http\Request;
 use SebastianBergmann\Environment\Console;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 
 class note extends Controller
 {
@@ -16,7 +19,15 @@ class note extends Controller
     public function index()
     {
         //
+        Log::info("Show cars with user id: 1");
         $car = User::find(1)->cars;
+        Log::info($car);
+        $user = User::find(2);
+        $user->name = "triNh Huynh THAI";
+        $user->save();
+        $user_name = $user->name;
+        dump($user_name);
+        dump($user);
         dd($car);
         return view("noteview");
     }
@@ -29,6 +40,10 @@ class note extends Controller
     public function create()
     {
         //
+        // $user = User::find(2);
+        // Mail::to($user)->send(new OrderShipped($user));
+        // log::info($user);
+        // log::info('sending email');
         return view("noteupdate");  
     }
 

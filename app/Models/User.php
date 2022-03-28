@@ -46,4 +46,12 @@ class User extends Authenticatable
         return $this->hasMany(car::class);
     }
 
+    public function getNameAttribute($value){
+        return ucfirst($value);
+    }
+
+    public function setNameAttribute($value){
+        $this->attributes['name'] = strtoupper($value);
+    }
+
 }

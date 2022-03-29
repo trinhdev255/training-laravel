@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\note;
+use App\Http\Controllers\CarController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,7 +19,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::resource('note', note::class);
-
-
+Route::resource('car', CarController::class);
+Route::post('/deletecheckedcars',  [CarController::class, 'deleteCheckedCar']);
+Route::post('/updateallcars', [CarController::class, 'updateAllCar']);
 
 

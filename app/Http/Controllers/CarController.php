@@ -2,15 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\OrderShipped;
-use App\Models\User;
 use Illuminate\Http\Request;
-use SebastianBergmann\Environment\Console;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Mail;
 use App\Models\car;
+use Illuminate\Support\Facades\Redis;
+use SebastianBergmann\Environment\Console;
 
-class note extends Controller
+class CarController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,18 +17,10 @@ class note extends Controller
     public function index()
     {
         //
-        Log::info("Show cars with user id: 1");
-        $car = User::find(93)->cars;
-        Log::info($car);
-        $user = User::find(2);
-        $user->name = "triNh Huynh THAI";
-        $user->save();
-        $user_name = $user->name;
-        dump($user_name);
-        dump($user);
-        dd($car);
-        return view("noteview");
+        $cars = Car::search()->orderby('user_id')->paginate(50);
+        return view('carindex', compact('cars'));
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -41,11 +30,6 @@ class note extends Controller
     public function create()
     {
         //
-        // $user = User::find(2);
-        // Mail::to($user)->send(new OrderShipped($user));
-        // log::info($user);
-        // log::info('sending email');
-        return view("noteupdate");  
     }
 
     /**
@@ -57,10 +41,6 @@ class note extends Controller
     public function store(Request $request)
     {
         //
-        // dd($request);
-        dd($request->all());
-        return "hello";
-
     }
 
     /**
@@ -83,12 +63,11 @@ class note extends Controller
     public function edit($id)
     {
         //
-        return view("noteupdate", ["id"=> $id]);
     }
 
     /**
      * Update the specified resource in storage.
-     *  
+     *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -96,12 +75,7 @@ class note extends Controller
     public function update(Request $request, $id)
     {
         //
-        // echo $request;
-        // echo $id;
-        // die();
-        dump($request);
-        dd($id);
-        return 0;
+        
     }
 
     /**
@@ -110,11 +84,25 @@ class note extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id, $request)
     {
         //
-        $car = Car::find($id);
-        $car->delete();
+        dump($request);
+        dd($request->id);
     }
 
+    public function deleteCheckedCar(Request $request)
+    {
+        $arrId = $request->all();
+        // dump(array_values($arrId));
+        $cars = Car::find($arrId);
+        // dd($cars);
+        $cars->each->delete();
+
+    }
+
+    public function updateAllCar(Request $request){
+        dd($request);
+    }
+    
 }

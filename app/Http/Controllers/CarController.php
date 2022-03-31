@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\car;
 use Illuminate\Support\Facades\Redis;
 use SebastianBergmann\Environment\Console;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\File;
 
 class CarController extends Controller
 {
@@ -75,7 +77,7 @@ class CarController extends Controller
     public function update(Request $request, $id)
     {
         //
-        
+
     }
 
     /**
@@ -98,11 +100,30 @@ class CarController extends Controller
         $cars = Car::find($arrId);
         // dd($cars);
         $cars->each->delete();
-
     }
 
-    public function updateAllCar(Request $request){
+    public function updateAllCar(Request $request)
+    {
+        // $arrId = $request->all();
+        // $cars = Car::find(array_keys($arrId));
+        // $path = Storage::putFile('photos', new File(array_values($arrId)[0]));
+        // dump($path);
+        // dump(array_keys($arrId));
+        // dump(array_values($arrId));
+        // dump($cars);
+        // dd($request);
+        $validated = $request->validate([
+            'filesTest' => 'required',
+        ]);
+
+        if ($request->hasFile('filesTest')) {
+            $file = $request->filesTest;
+            dump($file);
+            //Lấy Tên files
+            $path = $request->file('filesTest')->store('images');
+            dump('Tên Files: ' . $file->getClientOriginalName());
+        }
+        dump($path);
         dd($request);
     }
-    
 }

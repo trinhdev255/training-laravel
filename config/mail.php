@@ -40,7 +40,7 @@ return [
             'port' => env('MAIL_PORT', 587),
             'encryption' => env('MAIL_ENCRYPTION', 'tls'),
             'username' => env('abchtertr@gmail.com'),
-            'password' => env('zydcmaboxejfsgea'),
+            'password' => env(''),
             'timeout' => null,
             'from' => [
                 'address' => env('MAIL_FROM_ADDRESS', 'abchtertr@gmail.com'),

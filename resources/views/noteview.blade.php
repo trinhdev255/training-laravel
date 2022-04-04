@@ -7,6 +7,13 @@
     <title>Document</title>
 </head>
 <body>
-    This is noteview 
+    <div>
+        <ul>
+            @foreach($user_car as $uc)
+                <li>Name: {{ $uc->name }}</li>
+                {{-- <li>First car: {{ $uc->cars()->oldest()->first()->name }}  </li> --}}
+            @endforeach
+        </ul>
+    </div>
 </body>
 </html>

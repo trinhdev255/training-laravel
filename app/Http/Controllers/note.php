@@ -9,6 +9,7 @@ use SebastianBergmann\Environment\Console;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use App\Models\car;
+use Illuminate\Support\Facades\DB;
 
 class note extends Controller
 {
@@ -20,17 +21,20 @@ class note extends Controller
     public function index()
     {
         //
-        Log::info("Show cars with user id: 1");
-        $car = User::find(93)->cars;
-        Log::info($car);
-        $user = User::find(2);
-        $user->name = "triNh Huynh THAI";
-        $user->save();
-        $user_name = $user->name;
-        dump($user_name);
-        dump($user);
-        dd($car);
-        return view("noteview");
+        // Log::info("Show cars with user id: 1");
+        // $car = User::find(93)->cars;
+        // Log::info($car);
+        // $user = User::find(2);
+        // $user->name = "triNh Huynh THAI";
+        // $user->save();
+        // $user_name = $user->name;
+        // dump($user_name);
+        // dump($user);
+        // dd($car);
+        // return view("noteview");
+        $user_car = User::get();
+        return view("noteview", compact('user_car'));
+
     }
 
     /**

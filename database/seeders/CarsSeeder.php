@@ -18,10 +18,11 @@ class CarsSeeder extends Seeder
     public function run()
     {
         $x = 0;
-        while($x<1000){
+        while($x<1000000){
             DB::table('cars')->insert([
                 'userId' => User::all()->random()->id,
                 'name' => Str::random(10),
+                'img_path' => "https://thelifetank.com/wp-content/uploads/2018/08/avatar-default-icon.png"
             ]);
             $x++;
         }

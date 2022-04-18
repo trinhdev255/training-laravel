@@ -19,7 +19,7 @@ class CarController extends Controller
     public function index()
     {
         //
-        $cars = Car::search()->orderby('user_id')->paginate(50);
+        $cars = Car::search()->orderby('userId')->paginate(50);
         return view('carindex', compact('cars'));
     }
 

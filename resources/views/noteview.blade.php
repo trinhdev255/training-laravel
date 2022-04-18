@@ -9,9 +9,24 @@
 <body>
     <div>
         <ul>
-            @foreach($user_car as $uc)
+            {{-- @foreach($user_car as $uc)
                 <li>Name: {{ $uc->name }}</li>
+                <li>First car: {{ $uc->cars()->oldest()->first()->name }}  </li>
+            @endforeach --}}
+            abc
+            @foreach($user_car as $uc)
+                {{-- <li>Name: {{ $uc->name }}</li> --}}
+                {{-- <li>Name: {{ $uc->name }}</li>
+                <li>Name: {{ $uc->id }}</li> --}}
+                {{-- <li>UC: {{$uc -> userId}}</li> --}}
+
                 {{-- <li>First car: {{ $uc->cars()->oldest()->first()->name }}  </li> --}}
+                {{-- <li>First car: {{ $uc->cars->first()->name }}  </li> --}}
+
+                <li>Name: {{ $uc->name }}</li>
+                <li>First car: {{ $uc->carname }}  </li>
+
+                {{-- @break --}}
             @endforeach
         </ul>
     </div>

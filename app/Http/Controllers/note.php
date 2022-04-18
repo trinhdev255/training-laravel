@@ -32,7 +32,10 @@ class note extends Controller
         // dump($user);
         // dd($car);
         // return view("noteview");
-        $user_car = User::get();
+        // $user_car = User::with(['cars'])->get();
+        $user_car = DB::table('users')->leftJoin('cars', 'users.id', '=', 'cars.userId')->select('users.*', 'cars.name as carname')->groupBy('userId')->get(); 
+        // $user_car1 = DB::table('cars')-> 
+        dump($user_car);
         return view("noteview", compact('user_car'));
 
     }
